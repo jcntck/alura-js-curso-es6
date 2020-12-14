@@ -1,17 +1,20 @@
 class DateHelper {
-
+    
     constructor() {
-        throw new Error('DateHelper não pode ser instanciada.');
+        
+        throw new Error('Esta classe não pode ser instanciada');
     }
-
-    static dateToText(date) {
-        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    
+    static dataParaTexto(data) {
+        
+        return `${data.getDate()}/${data.getMonth()+1}/${data.getFullYear()}`;
     }
-
-    static textToDate(text) {
-
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) throw new Error('Formato de string inválido. (Formato aceito: yyyy-mm-dd)');
-
-        return new Date(...text.split('-').map((valor, index) => valor - index % 2));
+    
+    static textoParaData(texto) {
+        
+        if(!/\d{2}\/\d{2}\/\d{4}/.test(texto)) 
+            throw new Error('Deve estar no formato dd/mm/aaaa');
+             
+        return new Date(...texto.split('/').reverse().map((item, indice) => item - indice % 2));
     }
 }
